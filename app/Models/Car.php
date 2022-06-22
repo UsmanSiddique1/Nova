@@ -5,29 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agency extends Model
+class Car extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-  
-        'name',
-        
-    ];
+    protected $fillable = ['name', 'company','model','color','number_plate'];
 
-    public function user()
+    public function agency()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Agency::class);
     }
 
     public function locations()
     {
         return $this->morphMany(Location::class, 'locatable');
     }
-
-    public function cars()
-    {
-        return $this->hasMany(Car::class);
-    }
-
 }
