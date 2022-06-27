@@ -20,4 +20,13 @@ class Car extends Model
     {
         return $this->morphMany(Location::class, 'locatable');
     }
+
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
+
+    public function driver(){
+        return $this->belongsTo(Driver::class);
+    }
 }

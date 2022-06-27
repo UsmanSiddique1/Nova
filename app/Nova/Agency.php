@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\HasMany;
 
 class Agency extends Resource
 {
@@ -30,7 +31,9 @@ class Agency extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
             BelongsTo::make('User'),
-            MorphMany::make('Locations'),
+            MorphMany::make('Location'),
+            HasMany::make('Car'),
+            HasMany::make('Driver'),
 
         ];
     }

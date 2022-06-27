@@ -20,14 +20,18 @@ class Agency extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function locations()
+    public function location()
     {
         return $this->morphMany(Location::class, 'locatable');
     }
 
-    public function cars()
+    public function car()
     {
         return $this->hasMany(Car::class);
+    }
+
+    public function driver(){
+        return $this->hasMany(User::class);
     }
 
 }

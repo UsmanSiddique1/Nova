@@ -70,6 +70,7 @@ class Car extends Resource
 
             BelongsTo::make('Agency'),
             MorphMany::make('Locations'),
+            BelongsTo::make('Driver'),
 
         ];
     }

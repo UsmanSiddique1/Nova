@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Nova\Metrics\CountNewUser;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
@@ -10,17 +10,18 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasOne;
 
 
-class User extends Resource
+class Driver extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\User::class;
+    public static $model = \App\Models\Driver::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -35,7 +36,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'name', 'email','agency_id'
     ];
 
     /**
@@ -65,8 +66,11 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
-
-            HasOne::make('Agency'),
+            
+            BelongsTo::make('Agency'),
+            HasOne::make('Car'),
+                
+           
         ];
     }
 
@@ -79,7 +83,7 @@ class User extends Resource
     public function cards(NovaRequest $request)
     {
         return [
-            new CountNewUser()
+            
         ];
     }
 

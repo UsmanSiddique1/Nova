@@ -16,6 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('agency_id')->unsigned();
+            $table->bigInteger('driver_id')->unsigned();
             $table->string('name');
             $table->string('company');
             $table->integer('model');
